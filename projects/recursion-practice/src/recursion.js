@@ -15,11 +15,24 @@ var factorial = n => {
 // 2. Compute the sum of an array of integers.
 // Example:  sum([1, 2, 3, 4, 5, 6]);  // 21
 var sum = function(array) {
+  if (array.length === 0){
+return 0; //base case: empty array
+  } else {
+return array[0] + sum(array.slice(1)); //recursive case
+  }
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
 // Example: arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+return array.reduce((sum, element) => {
+  if (Array.isArray(element)){
+    return sum + arraySum(element); //recursively sum nested arrays
+  } else if (typeof element === 'number'){
+    return sum + element; //add nums to the sum
+  }
+  return sum; //ignore non-number elements
+}, 0);
 };
 
 // 4. Check if a number is even.
