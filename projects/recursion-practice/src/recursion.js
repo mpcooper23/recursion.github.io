@@ -210,6 +210,10 @@ return [str[0]].concat(stringToArray(str.slice(1))); // Recursive case
 
 // 17. Reverse the order of an array
 var reverseArr = function (array) {
+  if (array.length <= 1) {
+    return array; // Base case: return the array if it's empty or has one element
+}
+return [array[array.length - 1]].concat(reverseArr(array.slice(0, -1))); // Recursive case
 };
 
 // 18. Create a new array with a given value and length.
