@@ -129,18 +129,45 @@ var palindrome = function(string) {
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
+  if (x < y) {
+    return x; // Base case: if x is less than y, x is the remainder
+}
+return modulo(x - y, y); // Recursive case: subtract y from x and recurse
 };
 
 // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
 var multiply = function(x, y) {
+  if (y < 0) {
+    return -multiply(x, -y);
+}
+if (y === 0) {
+    return 0; 
+}
+return x + multiply(x, y - 1);
 };
 
 // 13. Write a function that divides two numbers without using the / operator  or
 // JavaScript's Math object.
 var divide = function(x, y) {
-};
+  var divide = function(dividend, divisor) {
+    // Handle negative numbers and ensure divisor is not zero
+    if (divisor === 0) {
+        throw new Error("Division by zero is undefined");
+    }
+    
+    const isNegative = (dividend < 0) !== (divisor < 0);
+    dividend = Math.abs(dividend);
+    divisor = Math.abs(divisor);
+
+    if (dividend < divisor) {
+        return 0; // Base case: if dividend is less than divisor, result is 0
+    }
+
+    const result = 1 + divide(dividend - divisor, divisor); // Recursive case
+    return isNegative ? -result : result;
+}};
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers.  The GCD of two
 // integers is the greatest integer that divides both x and y with no remainder.
