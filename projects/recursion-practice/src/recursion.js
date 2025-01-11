@@ -202,6 +202,10 @@ return gcd(y, x % y); // Recursive case: gcd of y and the remainder of x divided
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
 var createArray = function(str){
+  if (str.length === 0) {
+    return []; // Base case: return an empty array for an empty string
+}
+return [str[0]].concat(stringToArray(str.slice(1))); // Recursive case
 };
 
 // 17. Reverse the order of an array
