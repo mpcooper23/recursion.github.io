@@ -150,8 +150,7 @@ return x + multiply(x, y - 1);
 
 // 13. Write a function that divides two numbers without using the / operator  or
 // JavaScript's Math object.
-var divide = function(x, y) {
-  var divide = function(dividend, divisor) {
+var divide = function(dividend, divisor) {
     // Handle negative numbers and ensure divisor is not zero
     if (divisor === 0) {
         throw new Error("Division by zero is undefined");
@@ -167,7 +166,7 @@ var divide = function(x, y) {
 
     const result = 1 + divide(dividend - divisor, divisor); // Recursive case
     return isNegative ? -result : result;
-}};
+};
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers.  The GCD of two
 // integers is the greatest integer that divides both x and y with no remainder.
