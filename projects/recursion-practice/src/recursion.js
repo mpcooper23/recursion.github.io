@@ -111,6 +111,16 @@ return str[str.length - 1] + reverseString(str.slice(0, -1)); // Recursive case
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+   // Remove non-alphanumeric characters and convert to lowercase for uniformity
+   str = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+
+   if (str.length <= 1) {
+       return true; // Base case: a single character or empty string is a palindrome
+   }
+   if (str[0] !== str[str.length - 1]) {
+       return false; // If the first and last characters don't match, it's not a palindrome
+   }
+   return isPalindrome(str.slice(1, -1)); // Recursive case
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
