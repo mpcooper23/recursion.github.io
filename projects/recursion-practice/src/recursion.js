@@ -48,11 +48,27 @@ return false;
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+  if (n === 0) {
+    return 0; // Base case: no numbers below 0
+}
+if (n > 0) {
+    return (n - 1) + sumBelow(n - 1); // Recursive case for positive n
+} else {
+    return (n + 1) + sumBelow(n + 1); // Recursive case for negative n
+}
 };
 
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
 var range = function(x, y) {
+  if (x === y || x + 1 === y) {
+    return []; // Base case: no integers between x and y
+}
+if (x < y) {
+    return [x + 1].concat(range(x + 1, y)); // Recursive case for x < y
+} else {
+    return [x - 1].concat(range(x - 1, y)); // Recursive case for x > y
+}
 };
 
 // 7. Compute the exponent of a number.
@@ -61,6 +77,14 @@ var range = function(x, y) {
 // Example:  exponent(4,3);  // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+  if (exp === 0) {
+    return 1; // Base case: any number to the power of 0 is 1
+}
+if (exp > 0) {
+    return base * exponent(base, exp - 1); // Recursive case for positive exponent
+} else {
+    return 1 / exponent(base, -exp); // Handle negative exponents
+}
 };
 
 // 8. Determine if a number is a power of two.
@@ -68,10 +92,21 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  if (n === 1) {
+    return true; // Base case: 1 is a power of two (2^0)
+}
+if (n < 1 || n % 2 !== 0) {
+    return false; // Base case: numbers less than 1 or not divisible by 2 are not powers of two
+}
+return powerOfTwo(n / 2); // Recursive case
 };
 
 // 9. Write a function that accepts a string a reverses it.
 var reverse = function(string) {
+  if (str.length <= 1) {
+    return str; // Base case: return the string if it's empty or has one character
+}
+return str[str.length - 1] + reverseString(str.slice(0, -1)); // Recursive case
 };
 
 // 10. Write a function that determines if a string is a palindrome.
