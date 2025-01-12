@@ -251,7 +251,17 @@ return [mappedElement].concat(recursiveMap(array.slice(1), func)); // Recursive 
 // var testobj = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
 // countKeysInObj(testobj, 'r') // 1
 // countKeysInObj(testobj, 'e') // 2
-var countKeysInObj = function(obj, key) {
+var countKeysInObj = function(obj, targetKey) {
+  let count = 0;
+    for (let key in obj) {
+        if (key === targetKey) {
+            count += 1;
+        }
+        if (typeof obj[key] === 'object' && obj[key] !== null) {
+            count += countKeyOccurrences(obj[key], targetKey);
+        }
+    }
+    return count;
 };
 
 // 22. Write a function that counts the number of times a value occurs in an object.
@@ -259,11 +269,31 @@ var countKeysInObj = function(obj, key) {
 // countValuesInObj(testobj, 'r') // 2
 // countValuesInObj(testobj, 'e') // 1
 var countValuesInObj = function(obj, value) {
+  let count = 0;
+    for (let key in obj) {
+        if (obj[key] === value) {
+            count += 1;
+        }
+        if (typeof obj[key] === 'object' && obj[key] !== null) {
+            count += countValueOccurrences(obj[key], value);
+        }
+    }
+    return count;
 };
 
 // 23. Find all keys in an object (and nested objects) by a provided name and rename
 // them to a provided new name while preserving the value stored at that key.
 var replaceKeysInObj = function(obj, key, newKey) {
+  for (let key in obj) {
+    if (key === oldKeyName) {
+        obj[newKey] = obj[key];
+        delete obj[key];
+    }
+    if (typeof obj[key] === 'object' && obj[key] !== null) {
+        renameKeys(obj[key], oldKeyName, newKey);
+    }
+}
+return obj;
 };
 
 // 24. Get the first n Fibonacci numbers.  In the Fibonacci Sequence, each subsequent
@@ -272,6 +302,19 @@ var replaceKeysInObj = function(obj, key, newKey) {
 // fibonacci(5);  // [0, 1, 1, 2, 3, 5]
 // Note:  The 0 is not counted.
 var fibonacci = function(n) {
+    if (n === 0) {
+        return []; // Base case: no Fibonacci numbers
+    }
+    if (n === 1) {
+        return [1]; // Base case: first Fibonacci number (excluding 0)
+    }
+    if (n === 2) {
+        return [1, 1]; // Base case: first two Fibonacci numbers
+    }
+    
+    const fibs = fibonacci(n - 1); // Recursive case: get the first n-1 Fibonacci numbers
+    const nextFib = fibs[fibs.length - 1] + fibs[fibs.length - 2];
+    return fibs.concat(nextFib);
 };
 
 // 25. Return the Fibonacci number located at index n of the Fibonacci sequence.
