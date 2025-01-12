@@ -220,12 +220,21 @@ return [array[array.length - 1]].concat(reverseArr(array.slice(0, -1))); // Recu
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
 var buildList = function(value, length) {
+  if (length === 0) {
+    return []; // Base case: return an empty array if length is 0
+}
+return [value].concat(buildList(value, length - 1)); // Recursive case
 };
 
 // 19. Count the occurence of a value inside a list.
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
 var countOccurrence = function(array, value) {
+  if (list.length === 0) {
+    return 0; // Base case: return 0 if the list is empty
+}
+const firstElementCount = list[0] === value ? 1 : 0;
+return firstElementCount + countOccurrence(list.slice(1), value); // Recursive case
 };
 
 // 20. Write a recursive version of map.
