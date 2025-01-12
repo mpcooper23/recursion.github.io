@@ -240,6 +240,11 @@ return firstElementCount + countOccurrence(list.slice(1), value); // Recursive c
 // 20. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
 var rMap = function(array, callback) {
+  if (array.length === 0) {
+    return []; // Base case: return an empty array if the input array is empty
+}
+const mappedElement = func(array[0]);
+return [mappedElement].concat(recursiveMap(array.slice(1), func)); // Recursive case
 };
 
 // 21. Write a function that counts the number of times a key occurs in an object.
