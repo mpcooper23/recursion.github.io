@@ -515,7 +515,6 @@ if (array[mid] === target) {
 // Sample array:  [34,7,23,32,5,62]
 // Sample output: [5,7,23,32,34,62]
 var mergeSort = function(array) {
-  function mergeSort(array) {
     if (array.length <= 1) {
         return array; // Base case: array is already sorted
     }
